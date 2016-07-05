@@ -1,8 +1,25 @@
 Organizer = {
 	initialize: function() {
-		var eventList = new Organizer.EventsListView();
+		var events = new Organizer.Events();
 
-		eventList.render();
+		var eventList = new Organizer.EventsListView({
+			collection: events
+		});
+
+		events.fetch({
+			success: function() {
+				events.reset([
+					{title: 'title 1'},
+					{title: 'title 2'},
+					{title: 'title 3'}
+				]);
+
+				eventList.render();
+			},
+			error: function() {
+				console.error('error');
+			}
+		});
 	}
 };
 
