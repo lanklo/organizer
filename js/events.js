@@ -19,9 +19,10 @@ Organizer.EventsListView = Backbone.View.extend({
 
 		that.$el.append(events_element);
 
-		$('#app').html(this.el);
+		$('#events-list').html(this.el);
 	},
-	tagName: 'ul'
+	tagName: 'ul',
+	className: 'list-group'
 	// el: '#events-list'
 	// tagName: '',
 	// className: '',
@@ -31,9 +32,9 @@ Organizer.EventsListView = Backbone.View.extend({
 
 Organizer.EventView = Backbone.View.extend({
 	tagName: 'li',
+	className: 'list-group-item',
 	render: function() {
-		var template = Handlebars.compile($('#event-template').html());
-		this.$el.html(template(this.model));
+		this.$el.html(Handlebars.templates['event'](this.model));
 		return this;
 	},
 	events: {
